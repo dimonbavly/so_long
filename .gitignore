@@ -1,3 +1,7 @@
 *
 !minilibx-linux/
 !.gitignore
+!Makefile
+!so_long.c
+!ft_so_long.h
+
