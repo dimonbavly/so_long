@@ -4,3 +4,6 @@
 [submodule "Libft"]
 	path = Libft
 	url = git@github.com:dimonbavly/Libft.git
+[submodule "gnl"]
+	path = gnl
+	url = git@github.com:dimonbavly/gnl.git
