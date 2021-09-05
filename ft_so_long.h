@@ -46,7 +46,7 @@ typedef struct s_resuorces
 	t_hero hero;
 	t_exit exit;
 	t_thing thing;
-	void (*get_thing_pos) (t_thing *thing, char **content);
+	void (*get_thing_pos) (t_thing *thing, char **map_content);
 	t_map map;
 	int way;
 }t_res;
