@@ -5,7 +5,7 @@ static void ft_check_params(int argc, char **argv);
 int main (int argc, char **argv)
 {
 	ft_check_params(argc, argv);
-//	ft_slrun(*(argv + 1));
+	ft_sl_run(*(argv + 1));
 	return (0);
 }
 

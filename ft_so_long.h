@@ -36,7 +36,9 @@ typedef struct s_map
 {
 	int width;
 	int height;
-	char *name;
+	char *title;
+	char **content;
+	
 }t_map;
 
 typedef struct s_resuorces
@@ -44,6 +46,7 @@ typedef struct s_resuorces
 	t_hero hero;
 	t_exit exit;
 	t_thing thing;
+	void (*get_thing_pos) (t_thing *thing, char **content);
 	t_map map;
 	int way;
 }t_res;
