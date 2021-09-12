@@ -5,10 +5,12 @@
 */
 static t_map ft_sl_init_map(char *path);
 static void ft_sl_init_hero(t_hero *hero, t_map map);
-void ft_sl_check_map(t_map *map);
 
 void ft_sl_init_res(t_res *res, char *path)
 {
+	*res = (t_res){(t_hero){(t_pos){0, 0}}, (t_exit){(t_pos){0, 0}},\
+		(t_thing){(t_pos){0,0}}, NULL,\
+			(t_map){0, 0, NULL, NULL},0};
 	res->map = ft_sl_init_map(path);
 	ft_sl_init_hero(&(res->hero), res->map);
 	res->exit = (t_exit){ft_get_exit_pos(res->map)};
@@ -18,9 +20,10 @@ void ft_sl_init_res(t_res *res, char *path)
 static t_map ft_sl_init_map(char *path)
 {
 	t_map map;
+	t_dllist *current;
+	t_dllist *tmp;
 	int fd;
 	int ret;
-	int i;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
@@ -28,27 +31,24 @@ static t_map ft_sl_init_map(char *path)
 		//error file opening
 		exit(EXIT_FAILURE);
 	}
-	i = 0;
+	ret = -1;
+	current = map.dllst;
+	map.height = 0;
 	while (1)
 	{
 		//!!! or use list of strings ???
-		ret = get_next_line(fd, map.content + i++);
+		tmp = ft_dltail(current);
+		ft_dlinsertafter(&tmp, ft_dllstnew(NULL));
+		ret = get_next_line(fd, (char**)&(ft_dltail(current)->content));
 		if (ret < 0)
 			break ;
+		current = current->next;
 	}
-	map.height = i;
-	ft_sl_check_map(map);
-	map.width = ft_strlen(map.content);
+	ft_sl_check_map(&map);
+	map.width = ft_strlen((char*)map.dllst->content);
 	map.title = &path[0]; //basename
+	return (map);
 }
-
-void ft_sl_check_map(t_map *map);
-{
-	unsigned int i;
-
-	while (1)
-}
-
 
 static void ft_sl_init_hero(t_hero *hero, t_map map)
 {

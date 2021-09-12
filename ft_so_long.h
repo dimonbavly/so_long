@@ -8,8 +8,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include "Libft/libft.h"
 
 # define PIXEL 16
+# define MAP_CHARACTERS "01CEP" //wall walk
+# define NUM_MAP_CHARACTERS 5
 
 typedef struct s_coordinates
 {
@@ -37,11 +40,11 @@ typedef struct s_map
 	int width;
 	int height;
 	char *title;
-	char **content;
+	t_dllist *dllst;
 	
 }t_map;
 
-typedef struct s_resuorces
+typedef struct s_resources
 {
 	t_hero hero;
 	t_exit exit;
@@ -50,5 +53,9 @@ typedef struct s_resuorces
 	t_map map;
 	int way;
 }t_res;
+
+
+void ft_sl_run(char *path);
+void ft_sl_game(t_res *res);
 
 #endif

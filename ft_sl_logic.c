@@ -4,7 +4,6 @@
 ** \file ft_sl_logic.c
 */
 
-void ft_sl_start(t_res *res);
 
 void ft_sl_run(char *path)
 {
