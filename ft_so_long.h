@@ -17,7 +17,7 @@
 typedef struct s_coordinates
 {
 	int x;
-	int y;
+	void *y;
 }t_pos;
 
 typedef struct s_hero
@@ -47,7 +47,7 @@ typedef struct s_map
 typedef struct s_resources
 {
 	t_hero hero;
-	t_exit exit;
+	t_exit *exit;
 	t_thing thing;
 	void (*get_thing_pos) (t_thing *thing, char **map_content);
 	t_map map;

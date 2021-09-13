@@ -21,7 +21,7 @@ CC = gcc
 
 
 test:
-	@echo -e "\033[38;5;226;48;5;16m $(SRCS)\033[0m"
+	@echo -e "\033[38;5;226;48;5;16m $(MAKEFLAGS)\033[0m"
 all:	$(NAME)
 
 clean:
