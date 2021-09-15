@@ -3,19 +3,16 @@
 /*
 ** \file ft_sl_utils.c
 */
-t_pos ft_get_exit_pos(t_map map);
 static t_map ft_sl_init_map(char *path);
 static void ft_sl_init_hero(t_hero *hero, t_map map);
 
 void ft_sl_init_res(t_res *res, char *path)
 {
-	*res = (t_res){(t_hero){(t_pos){0, NULL}}, &(t_exit){(t_pos){0, NULL}},\
+	*res = (t_res){(t_hero){(t_pos){0, NULL}}, (t_exit){(t_pos){0, NULL}},\
 		(t_thing){(t_pos){0,NULL}}, NULL,\
 			(t_map){0, 0, NULL, NULL},0};
 	res->map = ft_sl_init_map(path);
 	ft_sl_init_hero(&(res->hero), res->map);
-	res->exit = (t_exit){ft_get_exit_pos(res->map)};
-	res->get_thing_pos(&(res->thing), res->map);
 }
 
 static t_map ft_sl_init_map(char *path)
@@ -53,29 +50,21 @@ static t_map ft_sl_init_map(char *path)
 
 static void ft_sl_init_hero(t_hero *hero, t_map map)
 {
+	char *occ;
+
+	while (map.dllst)
+	{
+		occ = ft_strchr((const char *)map.dllst->content, 'P');
+		if (occ)
+		{
+			hero->pos = (t_pos){occ - (char *)map.dllst->content, map.dllst};
+		}
+		else
+		{
+		   	if(map.dllst->next != NULL)
+				map.dllst = map.dllst->next;
+		}
+	}
 	return ;
 }
 
-t_pos ft_get_exit_pos(t_map map)
-{
-	t_list *lst;
-	int i;
-	size_t size;
-	
-	while (map.dllst)
-	{
-		i = 0;
-		while ((char*)map.dllst->content)
-		{
-			if (((char*)map.dllst->content)[i] == 'E')
-				ft_lstadd_back(&lst,\
-					   	ft_lstnew((void*)&(t_exit){(t_pos){i, map.dllst}}));
-			i++;
-		}
-		if (map.dllst->next != NULL)
-			map.dllst = map.dllst->next;
-	}
-	size = ft_lstsize(lst);
-	
-
-}

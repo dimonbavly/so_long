@@ -1,8 +1,10 @@
 OS = $(shell uname)
 CFLAGS = -Wextra -Werror -Wall
-CFLAGS += -I/usr/include -Iminilibx_linux -O3
-CFLAGS += -I/gnl -D BUFFER_SIZE=32
-CFLAGS += -I.
+CFLAGS += -Lminilibx-linux -lmlx_Linux
+CFLAGS += -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz
+CFLAGS += -Ignl -D BUFFER_SIZE=32
+CFLAGS += -ILibft 
+#CFLAGS += -LLibft -lft
 NAME = so_long
 LIBFT = libft.a
 MINILIBX_REL_PATH = ./minilibx-linux/
@@ -14,14 +16,13 @@ SRCS = $(addsuffix .c, $(NAME))\
 	gnl/get_next_line_utils.c\
 	ft_sl_logic.c\
 	ft_map_check.c\
-	ft_sl_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 CC = gcc
 
 
 test:
-	@echo -e "\033[38;5;226;48;5;16m $(MAKEFLAGS)\033[0m"
+	@echo -e "\033[38;5;226;48;5;16m $(CFLAGS)\033[0m"
 all:	$(NAME)
 
 clean:
@@ -30,13 +31,15 @@ clean:
 fclean:	clean
 	rm -f so_long
 
-re:
+re: fclean all
 
 $(NAME):	 $(MLX) $(OBJS)
+	@echo -e "\033[38;5;226;48;5;16m ------------>so_long\033[0m"
 
+	$(CC) $(CFLAGS) $(OBJS)  -o $(NAME)
 $(MLX):
 	@echo -e "\033[38;5;226;48;5;16m ------------>mlx\033[0m"
 	make --directory=$(MINILIBX_REL_PATH)
 %.o:	%.c
-	@echo -e "\033[38;5;226;48;5;16m------------\>$@\033[0m"
+	@echo -e "\033[38;5;226;48;5;16m------------>$@\033[0m"
 	$(CC) $(CFLAGS) -c $< -o $@

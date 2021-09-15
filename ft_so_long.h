@@ -8,7 +8,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include "Libft/libft.h"
+# include <libft.h>
+# include <get_next_line.h>
+# include <mlx.h>
 
 # define PIXEL 16
 # define MAP_CHARACTERS "01CEP" //wall walk
@@ -47,7 +49,7 @@ typedef struct s_map
 typedef struct s_resources
 {
 	t_hero hero;
-	t_exit *exit;
+	t_exit exit;
 	t_thing thing;
 	void (*get_thing_pos) (t_thing *thing, char **map_content);
 	t_map map;
@@ -57,5 +59,7 @@ typedef struct s_resources
 
 void ft_sl_run(char *path);
 void ft_sl_game(t_res *res);
+void ft_sl_check_map(t_map *map);
+void ft_sl_init_res(t_res *res, char *path);
 
 #endif
