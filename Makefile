@@ -5,7 +5,7 @@ RM = rm -f
 DEBUG_LEVEL = -g3
 CFLAGS = -Wall -Wextra -Werror
 LDLIBS =  -lft\
-		  -lmlx_Linux\
+		  -lmlx\
 		  -lXext\
 		  -lX11\
 		  -lm\
@@ -23,7 +23,7 @@ SRC_PATH = src
 OBJ_PATH = obj
 DEBUG_PATH = debug
 SRCS = $(wildcard $(SRC_PATH)/*.c)
-OBJS = $(SRCS:%.c=%.o)
+OBJS = $(patsubst $(SRC_PATH)%,$(OBJ_PATH)%,$(SRCS:%.c=%.o))
 
 ##---<<<Project--------------------------------
 
@@ -40,25 +40,34 @@ MINILIBX = libmlx_Linux.a
 ##---GNL>>>------------------------------------
 GNL_PATH = gnl
 GNL_SRCS = $(wildcard $(GNL_PATH)/*.c)
-GNL_OBJS = $(patsubst %.c, %.o, $(GNL_SRCS))
+GNL_OBJS = $(patsubst $(GNL_PATH)/%.c,$(OBJ_PATH)/%.o, $(GNL_SRCS))
+GNL_I_FLAGS = -Ignl
+GNL_HEADER = $(GNL_PATH)/get_next_line.h
 ##---<<<GNL------------------------------------
 
 
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test
 
 
 
-test:	$(OBJS)
-	
+test:	$(MINILIBX)
+		
 all:
 
 
-$(NAME):	$(LIBFT) $(MLX) $(GNL_OBJS) $(OBJS)
+$(NAME):	$(LIBFT) $(MINILIBX) $(GNL_OBJS) $(OBJS)
 
+## make $(OBJS)
+$(OBJS):	$(SRCS) $(HEADERS)
+	$(CC) $(CFLAGS) $(I_FLAGS) -c $< -o $@
 
-$(OBJS):	$(SRCS)	$(HEADERS)
-	$(CC) $(I_FLAGS) -c $(SRCS) -o $@
+$(GNL_OBJS):	$(GNL_SRCS) $(GNL_HEADER)
+	$(CC) $(CFLAGS) $(GNL_I_FLAGS) -c $< -o $@
 
+$(MINILIBX):
+	$(MAKE) --directory=$(MINILIBX_PATH)
 
+$(OBJ_PATH):
+	mkdir obj
 
