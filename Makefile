@@ -1,45 +1,64 @@
-OS = $(shell uname)
-CFLAGS = -Wextra -Werror -Wall
-CFLAGS += -Lminilibx-linux -lmlx_Linux
-CFLAGS += -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz
-CFLAGS += -Ignl -D BUFFER_SIZE=32
-CFLAGS += -ILibft 
-#CFLAGS += -LLibft -lft
+##---Project>>>--------------------------------
 NAME = so_long
+CC = clang
+RM = rm -f
+DEBUG_LEVEL = -g3
+CFLAGS = -Wall -Wextra -Werror
+LDLIBS =  -lft\
+		  -lmlx_Linux\
+		  -lXext\
+		  -lX11\
+		  -lm\
+		  -lz
+LDFLAGS = -L.\
+		  -L$(MINILIBX_PATH)
+HEADERS = $(filter-out $(MINILIBX_PATH)/mlx_int.h,\
+		  $(foreach i_p, $(INCLUDE_PATHS),$(wildcard $(i_p)/*.h)))
+INCLUDE_PATHS = include\
+			   $(GNL_PATH)\
+			   $(MINILIBX_PATH)\
+			   $(LIBFT_PATH)
+I_FLAGS = $(foreach i_p, $(INCLUDE_PATHS),-I$(i_p))
+SRC_PATH = src
+OBJ_PATH = obj
+DEBUG_PATH = debug
+SRCS = $(wildcard $(SRC_PATH)/*.c)
+OBJS = $(SRCS:%.c=%.o)
+
+##---<<<Project--------------------------------
+
+##---Libft>>>----------------------------------
+LIBFT_PATH = Libft
 LIBFT = libft.a
-MINILIBX_REL_PATH = ./minilibx-linux/
-MINILIBX_UNAME = libmlx_$(shell uname).a
-MLX = $(addprefix $(MINILIBX_REL_PATH), $(MINILIBX_UNAME))
-SRCS = $(addsuffix .c, $(NAME))\
-	ft_sl_utils.c\
-	gnl/get_next_line.c\
-	gnl/get_next_line_utils.c\
-	ft_sl_logic.c\
-	ft_map_check.c\
+##---<<<Libft----------------------------------
 
-OBJS = $(SRCS:.c=.o)
-CC = gcc
+##---Minilibx>>>-------------------------------
+MINILIBX_PATH = minilibx-linux
+MINILIBX = libmlx_Linux.a
+##---<<<Minilibx-------------------------------
+
+##---GNL>>>------------------------------------
+GNL_PATH = gnl
+GNL_SRCS = $(wildcard $(GNL_PATH)/*.c)
+GNL_OBJS = $(patsubst %.c, %.o, $(GNL_SRCS))
+##---<<<GNL------------------------------------
 
 
-test:
-	@echo -e "\033[38;5;226;48;5;16m $(CFLAGS)\033[0m"
-all:	$(NAME)
 
-clean:
-	rm -f $(OBJS)
+.PHONY: all clean fclean re
 
-fclean:	clean
-	rm -f so_long
 
-re: fclean all
 
-$(NAME):	 $(MLX) $(OBJS)
-	@echo -e "\033[38;5;226;48;5;16m ------------>so_long\033[0m"
+test:	$(OBJS)
+	
+all:
 
-	$(CC) $(CFLAGS) $(OBJS)  -o $(NAME)
-$(MLX):
-	@echo -e "\033[38;5;226;48;5;16m ------------>mlx\033[0m"
-	make --directory=$(MINILIBX_REL_PATH)
-%.o:	%.c
-	@echo -e "\033[38;5;226;48;5;16m------------>$@\033[0m"
-	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME):	$(LIBFT) $(MLX) $(GNL_OBJS) $(OBJS)
+
+
+$(OBJS):	$(SRCS)	$(HEADERS)
+	$(CC) $(I_FLAGS) -c $(SRCS) -o $@
+
+
+
