@@ -6,13 +6,18 @@
 static t_map ft_sl_init_map(char *path);
 static void ft_sl_init_hero(t_hero *hero, t_map map);
 
-void ft_sl_init_res(t_res *res, char *path)
+void ft_sl_init_res(t_res **res, char *path)
 {
-	*res = (t_res){(t_hero){(t_pos){0, NULL}}, (t_exit){(t_pos){0, NULL}},\
+	if (res == NULL)
+		{
+			//error_???
+			exit(EXIT_FAILURE);
+		}
+	*res = &(t_res){(t_hero){(t_pos){0, NULL}}, (t_exit){(t_pos){0, NULL}},\
 		(t_thing){(t_pos){0,NULL}}, NULL,\
 			(t_map){0, 0, NULL, NULL},0};
-	res->map = ft_sl_init_map(path);
-	ft_sl_init_hero(&(res->hero), res->map);
+	(*res)->map = ft_sl_init_map(path);
+	ft_sl_init_hero(&((*res)->hero), (*res)->map);
 }
 
 static t_map ft_sl_init_map(char *path)
@@ -30,20 +35,21 @@ static t_map ft_sl_init_map(char *path)
 		exit(EXIT_FAILURE);
 	}
 	ret = -1;
+	if (map.dllst == NULL)
+		map.dllst = ft_dllstnew(NULL);
 	current = map.dllst;
 	map.height = 0;
 	while (1)
 	{
-		//!!! or use list of strings ???
 		tmp = ft_dltail(current);
-		ft_dlinsertafter(&tmp, ft_dllstnew(NULL));
-		ret = get_next_line(fd, (char**)&(ft_dltail(current)->content));
-		if (ret < 0)
+		ret = get_next_line(fd, (char**)&tmp->content);
+		if (ret <= 0)
 			break ;
-		current = current->next;
+		ft_dlinsertafter(&tmp, ft_dllstnew(NULL));
 	}
 	ft_sl_check_map(&map);
 	map.width = ft_strlen((char*)map.dllst->content);
+	map.height = ft_dllstsize(map.dllst);
 	map.title = &path[0]; //basename
 	return (map);
 }
@@ -58,6 +64,7 @@ static void ft_sl_init_hero(t_hero *hero, t_map map)
 		if (occ)
 		{
 			hero->pos = (t_pos){occ - (char *)map.dllst->content, map.dllst};
+			break ;
 		}
 		else
 		{

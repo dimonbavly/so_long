@@ -91,7 +91,7 @@ static void	check_edges(t_dllist dllst)
 		{
 			while (*tmp != '\0')
 			{
-				if (*tmp != MAP_CHARACTERS[0])
+				if (*tmp != MAP_CHARACTERS[1])
 				{
 					//map_error
 					exit(EXIT_FAILURE);
@@ -101,8 +101,8 @@ static void	check_edges(t_dllist dllst)
 		}
 		else
 		{
-			if (*tmp != MAP_CHARACTERS[0] ||\
-				   	*(tmp + ft_strlen(tmp) - 1) != MAP_CHARACTERS[0])
+			if (*tmp != MAP_CHARACTERS[1] ||\
+				   	*(tmp + ft_strlen(tmp) - 1) != MAP_CHARACTERS[1])
 			{
 				//error_map
 				exit(EXIT_FAILURE);

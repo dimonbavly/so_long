@@ -1,5 +1,5 @@
 ##---Project>>>--------------------------------
-NAME := so_long
+NAME ?= so_long
 CC := clang
 RM := rm -f
 DEBUG_LEVEL := -g3

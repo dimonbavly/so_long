@@ -60,6 +60,6 @@ typedef struct s_resources
 void ft_sl_run(char *path);
 void ft_sl_game(t_res *res);
 void ft_sl_check_map(t_map *map);
-void ft_sl_init_res(t_res *res, char *path);
+void ft_sl_init_res(t_res **res, char *path);
 
 #endif
