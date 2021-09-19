@@ -1,9 +1,9 @@
 ##---Project>>>--------------------------------
-NAME = so_long
-CC = clang
-RM = rm -f
+NAME := so_long
+CC := clang
+RM := rm -f
 DEBUG_LEVEL = -g3
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror
 LDLIBS =  -lft\
 		  -lmlx_Linux\
 		  -lXext\
@@ -44,13 +44,7 @@ GNL_OBJS = $(patsubst $(GNL_PATH)/%.c,$(OBJ_PATH)/%.o, $(GNL_SRCS))
 GNL_I_FLAGS = -Ignl
 GNL_HEADER = $(GNL_PATH)/get_next_line.h
 ##---<<<GNL------------------------------------
-
-
-
 .PHONY: all clean fclean re test
-
-
-
 test:	$(OBJS)	
 	$(info $(SRCS))
 	
@@ -58,15 +52,15 @@ test:	$(OBJS)
 all:	$(NAME)
 
 
-$(NAME):	$(LIBFT_PATH)/$(LIBFT) $(MINILIBX_PATH)/$(MINILIBX) $(GNL_OBJS) $(OBJS)
+$(NAME):	$(LIBFT_PATH)/$(LIBFT) $(MINILIBX_PATH)/$(MINILIBX)\
+   	$(GNL_OBJS) $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(GNL_OBJS) $(LDLIBS) -o $(NAME)
-	echo test
 
 ## make $(OBJS)
-$(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c $(HEADERS) $(OBJ_PATH)
+$(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c $(HEADERS) | $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(I_FLAGS) -c $< -o $@
 
-$(OBJ_PATH)/%.o:	$(GNL_PATH)/%.c $(GNL_HEADER) $(OBJ_PATH)
+$(OBJ_PATH)/%.o:	$(GNL_PATH)/%.c $(GNL_HEADER) | $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(GNL_I_FLAGS) -D BUFFER_SIZE=32 -c $< -o $@
 
 #$(GNL_OBJS):	$(GNL_SRCS) $(GNL_HEADER) $(OBJ_PATH)
@@ -79,4 +73,4 @@ $(LIBFT):
 	$(MAKE) --directory=$(LIBFT_PATH) mylibft
 
 $(OBJ_PATH):
-	mkdir obj
+	mkdir $@
