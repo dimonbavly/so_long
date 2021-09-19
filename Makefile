@@ -2,7 +2,7 @@
 NAME := so_long
 CC := clang
 RM := rm -f
-DEBUG_LEVEL = -g3
+DEBUG_LEVEL := -g3
 CFLAGS := -Wall -Wextra -Werror
 LDLIBS =  -lft\
 		  -lmlx_Linux\
@@ -19,9 +19,9 @@ INCLUDE_PATHS = include\
 			   $(MINILIBX_PATH)\
 			   $(LIBFT_PATH)
 I_FLAGS = $(foreach i_p, $(INCLUDE_PATHS),-I$(i_p))
-SRC_PATH = src
-OBJ_PATH = obj
-DEBUG_PATH = debug
+SRC_PATH := src
+OBJ_PATH := obj
+DEBUG_PATH := dbg
 SRCS = $(wildcard $(SRC_PATH)/*.c)
 OBJS = $(patsubst $(SRC_PATH)%,$(OBJ_PATH)%,$(SRCS:%.c=%.o))
 
@@ -44,11 +44,10 @@ GNL_OBJS = $(patsubst $(GNL_PATH)/%.c,$(OBJ_PATH)/%.o, $(GNL_SRCS))
 GNL_I_FLAGS = -Ignl
 GNL_HEADER = $(GNL_PATH)/get_next_line.h
 ##---<<<GNL------------------------------------
-.PHONY: all clean fclean re test
-test:	$(OBJS)	
-	$(info $(SRCS))
-	
-		
+
+
+##---Rules>>>----------------------------------
+.PHONY: all clean fclean re test debug
 all:	$(NAME)
 
 
@@ -66,11 +65,32 @@ $(OBJ_PATH)/%.o:	$(GNL_PATH)/%.c $(GNL_HEADER) | $(OBJ_PATH)
 #$(GNL_OBJS):	$(GNL_SRCS) $(GNL_HEADER) $(OBJ_PATH)
 #	$(CC) $(CFLAGS) $(GNL_I_FLAGS) -D BUFFER_SIZE=32 -c $< -o $@
 
-$(MINILIBX):
+$(MINILIBX_PATH)/$(MINILIBX):
 	$(MAKE) --directory=$(MINILIBX_PATH)
 
-$(LIBFT):
+$(LIBFT_PATH)/$(LIBFT):
 	$(MAKE) --directory=$(LIBFT_PATH) mylibft
 
 $(OBJ_PATH):
+	mkdir $@
+
+clean:
+	$(RM)r $(OBJ_PATH)
+
+fclean:	clean
+	$(RM)r $(DEBUG_PATH)
+	$(RM) $(NAME)
+	$(MAKE) --directory=$(MINILIBX_PATH) clean
+	$(MAKE) --directory=$(LIBFT_PATH) fclean
+
+re: fclean all
+
+
+debug:	CFLAGS += $(DEBUG_LEVEL)
+debug:	$(LIBFT_PATH)/$(LIBFT) $(MINILIBX_PATH)/$(MINILIBX)\
+   	$(GNL_OBJS) $(OBJS) | $(DEBUG_PATH)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(GNL_OBJS) $(LDLIBS)\
+		-o $(DEBUG_PATH)/$(NAME)
+
+$(DEBUG_PATH):
 	mkdir $@
