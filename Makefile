@@ -1,15 +1,22 @@
 ##---Project>>>--------------------------------
 NAME ?= so_long
+OS := $(shell uname)
 CC := clang
 RM := rm -f
 DEBUG_LEVEL := -g3
 CFLAGS := -Wall -Wextra -Werror
-LDLIBS =  -lft\
-		  -lmlx_Linux\
-		  -lXext\
-		  -lX11\
-		  -lm\
-		  -lz
+LDLIBS =  -lft
+ifeq ($(OS),Darwin)
+	LDLIBS += -lmlx\
+			  -framework OpenGL\
+			  -framework AppKit
+else
+	LDLIBS += -lmlx_Linux\
+			  -lXext\
+			  -lX11\
+			  -lm\
+			  -lz
+endif
 LDFLAGS = -L$(LIBFT_PATH)\
 		  -L$(MINILIBX_PATH)
 HEADERS = $(filter-out $(MINILIBX_PATH)/mlx_int.h,\
@@ -33,8 +40,13 @@ LIBFT = libft.a
 ##---<<<Libft----------------------------------
 
 ##---Minilibx>>>-------------------------------
-MINILIBX_PATH = minilibx-linux
-MINILIBX = libmlx_Linux.a
+ifeq ($(OS),Darwin)
+	MINILIBX_PATH = minilibx-darwin
+	MINILIBX = libmlx.a
+else
+	MINILIBX_PATH = minilibx-linux
+	MINILIBX = libmlx_Linux.a
+endif
 ##---<<<Minilibx-------------------------------
 
 ##---GNL>>>------------------------------------
@@ -48,6 +60,9 @@ GNL_HEADER = $(GNL_PATH)/get_next_line.h
 
 ##---Rules>>>----------------------------------
 .PHONY: all clean fclean re test debug
+
+test:
+	$(info $(LDLIBS))
 all:	$(NAME)
 
 
