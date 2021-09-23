@@ -1,5 +1,6 @@
 ##---Project>>>--------------------------------
 NAME ?= so_long
+MODE ?= opengl
 OS := $(shell uname)
 CC := clang
 RM := rm -f
@@ -41,8 +42,13 @@ LIBFT = libft.a
 
 ##---Minilibx>>>-------------------------------
 ifeq ($(OS),Darwin)
+ifneq ($(MODE),mms)
 	MINILIBX_PATH = minilibx-darwin
 	MINILIBX = libmlx.a
+else
+	MINILIBX_PATH = minilibx-mms
+	MINILIBX = libmlx.dylib
+endif
 else
 	MINILIBX_PATH = minilibx-linux
 	MINILIBX = libmlx_Linux.a
