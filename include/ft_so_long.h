@@ -12,11 +12,14 @@
 # include <get_next_line.h>
 # include <mlx.h>
 
-# define PIXEL 16
+# define WIDTH 32
+# define HEIGHT 32
+/*
+
 # define MAP_CHARACTERS "01CEP"
 # define NUM_MAP_CHARACTERS 5
 
-typedef struct s_coordinates
+typedef struct s_position
 {
 	int x;
 	void *y;
@@ -75,11 +78,15 @@ typedef struct s_map
 
 typedef struct s_resources
 {
-	void *mlx;
-	void *mlx_win;
 	t_map map;
 	int way;
 }t_res;
+
+typedef struct s_mlx_resources
+{
+    void *mlx;
+    void *mlx_win;
+}t_mlxr;
 
 
 void ft_sl_run(char *path);
