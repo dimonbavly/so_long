@@ -1,6 +1,6 @@
 ##---Project>>>--------------------------------
 NAME ?= so_long
-MODE ?= opengl
+MODE ?=	opengl
 OS := $(shell uname)
 CC := clang
 RM := rm -f

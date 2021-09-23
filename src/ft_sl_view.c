@@ -1,5 +1,4 @@
 #include <ft_so_long.h>
-
 void ft_sl_show_map(void *mlx_ptr, void *win_ptr, t_res *res)
 {
 	void *img;

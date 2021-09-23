@@ -19,11 +19,74 @@ void ft_sl_init_res(t_res **res, char *path)
 			//m alloc error
 			exit(EXIT_FAILURE);
 		}
-	ft_memcpy(*res, &((t_res){(t_hero){(t_pos){0, NULL}},\
-		(t_exit){(t_pos){0, NULL}}, (t_thing){(t_pos){0,NULL}}, NULL,\
-			(t_map){0, 0, NULL, NULL},0}), sizeof (t_res));
+
+    ft_memcpy(*res, &((t_res)
+    {
+        (t_map)
+        {
+            0, 0,
+            (t_hero)
+            {
+                (t_pos)
+                {
+                    0, 0
+                },
+                (t_img)
+                {
+                    NULL, WIDTH, HEIGHT
+                }
+            },
+            (t_exit)
+            {
+                (t_pos)
+                {
+                    0, 0
+                },
+                (t_img)
+                {
+                    NULL, WIDTH, HEIGHT
+                }
+            },
+            (t_thing)
+            {
+                (t_pos)
+                {
+                    0,0
+                },
+                (t_img)
+                {
+                    NULL, WIDTH, HEIGHT
+                }
+            },
+            (t_wall)
+            {
+                (t_pos)
+                {
+                    0,0
+                },
+                (t_img)
+                {
+                    NULL, WIDTH, HEIGHT
+                }
+            },
+            (t_empty)
+            {
+                (t_pos)
+                {
+                    0,0
+                    },
+                    (t_img)
+                    {
+                    NULL, WIDTH, HEIGHT
+                    }
+            },
+            NULL,
+            NULL
+        },
+        0
+    }),sizeof (t_res));
 	(*res)->map = ft_sl_init_map(path);
-	ft_sl_init_hero(&((*res)->hero), (*res)->map);
+	ft_sl_init_hero(&((*res)->map.hero), (*res)->map);
 }
 
 static t_map ft_sl_init_map(char *path)
@@ -78,6 +141,4 @@ static void ft_sl_init_hero(t_hero *hero, t_map map)
 				map.dllst = map.dllst->next;
 		}
 	}
-	return ;
-}
-
+	hero->img = 
