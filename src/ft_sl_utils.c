@@ -13,9 +13,15 @@ void ft_sl_init_res(t_res **res, char *path)
 			//error_???
 			exit(EXIT_FAILURE);
 		}
-	*res = &(t_res){(t_hero){(t_pos){0, NULL}}, (t_exit){(t_pos){0, NULL}},\
-		(t_thing){(t_pos){0,NULL}}, NULL,\
-			(t_map){0, 0, NULL, NULL},0};
+	*res = malloc (sizeof (**res));
+	if (*res == NULL)
+		{
+			//m alloc error
+			exit(EXIT_FAILURE);
+		}
+	ft_memcpy(*res, &((t_res){(t_hero){(t_pos){0, NULL}},\
+		(t_exit){(t_pos){0, NULL}}, (t_thing){(t_pos){0,NULL}}, NULL,\
+			(t_map){0, 0, NULL, NULL},0}), sizeof (t_res));
 	(*res)->map = ft_sl_init_map(path);
 	ft_sl_init_hero(&((*res)->hero), (*res)->map);
 }
