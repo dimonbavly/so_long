@@ -16,11 +16,11 @@ void ft_sl_run(char *path)
 
 void ft_sl_game(t_res *res)
 {
-	void *mlx;
-	void *mlx_win;
-	
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, res->map.width * WIDTH, res->map.height * HEIGHT,\
+	t_mlxres mlxres;
+
+	mlxres.mlx = mlx_init();
+	mlxres.mlx_win = mlx_new_window(mlxres.mlx, res->map.width * WIDTH, res->map.height * HEIGHT,\
 		   	res->map.title);
-	mlx_loop(mlx);
+    ft_sl_show_map(&mlxres, res);
+	mlx_loop(mlxres.mlx);
 }

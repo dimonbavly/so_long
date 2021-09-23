@@ -1,4 +1,4 @@
-#include "ft_so_long.h"
+#include <ft_so_long.h>
 
 static void	check_characters(t_dllist dllst);
 static void	check_num_characters(t_dllist dllst);

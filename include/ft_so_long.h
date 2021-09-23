@@ -14,7 +14,7 @@
 
 # define WIDTH 32
 # define HEIGHT 32
-/*
+
 
 # define MAP_CHARACTERS "01CEP"
 # define NUM_MAP_CHARACTERS 5
@@ -28,6 +28,7 @@ typedef struct s_position
 typedef struct s_image
 {
 	char *path;
+	void *bin;
 	int width;
 	int height;
 }t_img;
@@ -86,12 +87,12 @@ typedef struct s_mlx_resources
 {
     void *mlx;
     void *mlx_win;
-}t_mlxr;
+}t_mlxres;
 
 
 void ft_sl_run(char *path);
 void ft_sl_game(t_res *res);
 void ft_sl_check_map(t_map *map);
 void ft_sl_init_res(t_res **res, char *path);
-void ft_sl_show_map(void *mlx_ptr, void *win_ptr, t_res *res);
+void ft_sl_show_map(t_mlxres *mlxres, t_res *res);
 #endif

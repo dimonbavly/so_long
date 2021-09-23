@@ -3,6 +3,8 @@
 /*
 ** \file ft_sl_utils.c
 */
+
+static void ft_sl_init_others (t_res *res);
 static t_map ft_sl_init_map(char *path);
 static void ft_sl_init_hero(t_hero *hero, t_map map);
 
@@ -33,7 +35,7 @@ void ft_sl_init_res(t_res **res, char *path)
                 },
                 (t_img)
                 {
-                    NULL, WIDTH, HEIGHT
+                    NULL, NULL, 0, 0
                 }
             },
             (t_exit)
@@ -44,7 +46,7 @@ void ft_sl_init_res(t_res **res, char *path)
                 },
                 (t_img)
                 {
-                    NULL, WIDTH, HEIGHT
+                    NULL, NULL, WIDTH, HEIGHT
                 }
             },
             (t_thing)
@@ -55,7 +57,7 @@ void ft_sl_init_res(t_res **res, char *path)
                 },
                 (t_img)
                 {
-                    NULL, WIDTH, HEIGHT
+                    NULL, NULL, WIDTH, HEIGHT
                 }
             },
             (t_wall)
@@ -66,7 +68,7 @@ void ft_sl_init_res(t_res **res, char *path)
                 },
                 (t_img)
                 {
-                    NULL, WIDTH, HEIGHT
+                    NULL, NULL, WIDTH, HEIGHT
                 }
             },
             (t_empty)
@@ -77,7 +79,7 @@ void ft_sl_init_res(t_res **res, char *path)
                     },
                     (t_img)
                     {
-                    NULL, WIDTH, HEIGHT
+                    NULL, NULL, WIDTH, HEIGHT
                     }
             },
             NULL,
@@ -87,6 +89,7 @@ void ft_sl_init_res(t_res **res, char *path)
     }),sizeof (t_res));
 	(*res)->map = ft_sl_init_map(path);
 	ft_sl_init_hero(&((*res)->map.hero), (*res)->map);
+    ft_sl_init_others(*res);
 }
 
 static t_map ft_sl_init_map(char *path)
@@ -125,20 +128,31 @@ static t_map ft_sl_init_map(char *path)
 
 static void ft_sl_init_hero(t_hero *hero, t_map map)
 {
-	char *occ;
+    char *occ;
 
-	while (map.dllst)
-	{
-		occ = ft_strchr((const char *)map.dllst->content, 'P');
-		if (occ)
-		{
-			hero->pos = (t_pos){occ - (char *)map.dllst->content, map.dllst};
-			break ;
-		}
-		else
-		{
-		   	if(map.dllst->next != NULL)
-				map.dllst = map.dllst->next;
-		}
-	}
-	hero->img = 
+    while (map.dllst)
+    {
+        occ = ft_strchr((const char *)map.dllst->content, 'P');
+        if (occ)
+        {
+            hero->pos = (t_pos){occ - (char *)map.dllst->content, map.dllst};
+            break ;
+        }
+        else
+        {
+            if(map.dllst->next != NULL)
+                map.dllst = map.dllst->next;
+        }
+    }
+    hero->img = (t_img){"map/hero.xpm", NULL,  WIDTH, HEIGHT};
+    return ;
+}
+
+static void ft_sl_init_others (t_res *res)
+{
+    res->map.exit = (t_exit){(t_pos){0,0}, (t_img){"map/exit.xpm", NULL, WIDTH, HEIGHT}};
+    res->map.thing = (t_thing){(t_pos){0,0}, (t_img){"map/thing.xpm", NULL, WIDTH, HEIGHT}};
+    res->map.wall = (t_wall){(t_pos){0,0}, (t_img){"map/wall.xpm", NULL, WIDTH, HEIGHT}};
+    res->map.empty = (t_empty){(t_pos){0,0}, (t_img){"map/empty.xpm", NULL, WIDTH, HEIGHT}};
+    return ;
+}
