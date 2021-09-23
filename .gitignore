@@ -1,6 +1,10 @@
 *
 !.gitignore
 !Makefile
-!so_long.c
-!ft_so_long.h
-
+!src/
+!include/
+!gnl/
+!img/
+!map/
+!minilibx-darwin/
+!minilibx-mms/
