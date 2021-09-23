@@ -18,8 +18,9 @@ void ft_sl_game(t_res *res)
 {
 	void *mlx;
 	void *mlx_win;
-
-//	pause();
+	
+	mlx = NULL;
+	mlx_win = NULL;
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, res->map.width * PIXEL, res->map.height * PIXEL,\
 		   	res->map.title);

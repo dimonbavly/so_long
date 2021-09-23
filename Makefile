@@ -114,4 +114,4 @@ debug:	$(LIBFT_PATH)/$(LIBFT) $(MINILIBX_PATH)/$(MINILIBX)\
 		-o $(DEBUG_PATH)/$(NAME)
 
 $(DEBUG_PATH):
-	mkdir $@
+	mkdir -p $@
