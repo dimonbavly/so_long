@@ -4,7 +4,7 @@ MODE ?=	opengl
 OS := $(shell uname)
 CC := clang
 RM := rm -f
-DEBUG_LEVEL := -g3
+DEBUG_FLAGS := -g -O0
 CFLAGS := -Wall -Wextra -Werror
 LDLIBS =  -lft
 ifeq ($(OS),Darwin)
@@ -101,17 +101,15 @@ clean:
 fclean:	clean
 	$(RM)r $(DEBUG_PATH)
 	$(RM) $(NAME)
+	$(RM) $(DEBUG_PATH)/$(NAME)
 	$(MAKE) --directory=$(MINILIBX_PATH) clean
 	$(MAKE) --directory=$(LIBFT_PATH) fclean
 
 re: fclean all
-
-
-debug:	CFLAGS += $(DEBUG_LEVEL)
+debug:	CFLAGS += $(DEBUG_FLAGS)
 debug:	$(LIBFT_PATH)/$(LIBFT) $(MINILIBX_PATH)/$(MINILIBX)\
    	$(GNL_OBJS) $(OBJS) | $(DEBUG_PATH)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(GNL_OBJS) $(LDLIBS)\
-		-o $(DEBUG_PATH)/$(NAME)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(GNL_OBJS) $(LDLIBS) -o $(DEBUG_PATH)/$(NAME)
 
 $(DEBUG_PATH):
 	mkdir -p $@
