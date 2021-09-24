@@ -87,6 +87,7 @@ typedef struct s_mlx_resources
 {
     void *mlx;
     void *mlx_win;
+    t_img *imgs;
 }t_mlxres;
 
 
