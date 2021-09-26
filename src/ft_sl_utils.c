@@ -141,17 +141,17 @@ static void	ft_sl_init_hero(t_hero *hero, t_map map)
 				map.dllst = map.dllst->next;
 		}
 	}
-	hero->img = (t_img){"map/hero.xpm", NULL, WIDTH, HEIGHT};
+	hero->img = (t_img){"img/hero.xpm", NULL, WIDTH, HEIGHT};
 }
 
 static void	ft_sl_init_others(t_res *res)
 {
 	res->map.exit = (t_exit){(t_pos){0, 0}, \
-	(t_img){"map/exit.xpm", NULL, WIDTH, HEIGHT}};
+	(t_img){"img/exit.xpm", NULL, WIDTH, HEIGHT}};
 	res->map.thing = (t_thing){(t_pos){0, 0}, \
-	(t_img){"map/thing.xpm", NULL, WIDTH, HEIGHT}};
+	(t_img){"img/thing.xpm", NULL, WIDTH, HEIGHT}};
 	res->map.wall = (t_wall){(t_pos){0, 0}, \
-	(t_img){"map/wall.xpm", NULL, WIDTH, HEIGHT}};
+	(t_img){"img/wall.xpm", NULL, WIDTH, HEIGHT}};
 	res->map.empty = (t_empty){(t_pos){0, 0}, \
-	(t_img){"map/empty.xpm", NULL, WIDTH, HEIGHT}};
+	(t_img){"img/empty.xpm", NULL, WIDTH, HEIGHT}};
 }
