@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:58 by                   #+#    #+#             */
-/*   Updated: 2021/09/28 21:33:06 by                  ###   ########.fr       */
+/*   Updated: 2021/09/28 22:27:13 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -31,6 +31,6 @@ int	main(int argc, char **argv)
 	if (!img)
 		perror("img from xpm");
 	mlx_put_image_to_window(res->mlx, res->win, img, 120, 120);
-	mlx_key_hook (res->mlx, keyhook, res->win);
+	mlx_key_hook (res->win, keyhook, res);
 	mlx_loop(res->mlx);
 }

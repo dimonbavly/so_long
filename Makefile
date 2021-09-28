@@ -15,13 +15,15 @@ CFLAGS = -Wall -Wextra -Werror
 #-framework OpenGL -framework Appkit
 
 #test:
-#all:	$(LIBFT) $(GNL_OBJS) $(NAME)
-#
+all:	$(NAME)
+
 $(NAME):	$(OBJS)
 	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
 $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
 	$(CC) $(DEBUGFLAGS) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
+clean:
+	rm -rf obj/* so_long
+debug:	$(NAME)
 norm:
 	norminette include/* src/*
 val:
