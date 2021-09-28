@@ -1,17 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_so_long.h                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 15:58:54 by                   #+#    #+#             */
-/*   Updated: 2021/09/28 15:58:54 by                  ###   ########.fr       */
+/*   Created: 2021/09/28 15:58:58 by                   #+#    #+#             */
+/*   Updated: 2021/09/28 15:58:58 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FT_SO_LONG_H
-# define FT_SO_LONG_H
+#include "ft_so_long.h"
 
-# include <mlx.h>
+int	main(int argc, char **argv)
+{
+	void	*mlx;
+	void	*mlx_win;
 
-#endif /*SO_LONG_FT_SO_LONG_H*/
+	(void) argc;
+	(void) argv;
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
+}
