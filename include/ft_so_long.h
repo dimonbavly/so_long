@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:54 by                   #+#    #+#             */
-/*   Updated: 2021/09/29 20:00:42 by                  ###   ########.fr       */
+/*   Updated: 2021/09/29 20:05:21 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SO_LONG_H
@@ -35,17 +35,18 @@ typedef struct s_map
 	char	**content;
 	int		width;
 	int		height;
-};
+}t_map;
 
 typedef struct s_resources
 {
 	void	*mlx;
 	void	*win;
-	char	**map;
+	t_map	*map;
 	t_img	*imgs;
 }t_res;
 
 int		keyhook(int key, t_res *res);
 char	**ft_get_map(char *filename);
+void	ft_show_map(t_res *res);
 
 #endif /*FT_SO_LONG_H*/
