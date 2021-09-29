@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:54 by                   #+#    #+#             */
-/*   Updated: 2021/09/29 20:07:33 by                  ###   ########.fr       */
+/*   Updated: 2021/09/29 20:08:01 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SO_LONG_H
@@ -34,6 +34,7 @@ typedef enum e_map_elements
 
 typedef struct s_image
 {
+	t_elem elem;
 	char	*path;
 	void	*bin;
 	int		width;
