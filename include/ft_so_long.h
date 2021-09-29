@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:54 by                   #+#    #+#             */
-/*   Updated: 2021/09/29 20:08:01 by                  ###   ########.fr       */
+/*   Updated: 2021/09/29 21:43:14 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SO_LONG_H
@@ -43,6 +43,7 @@ typedef struct s_image
 
 typedef struct s_map
 {
+	char	*argv;
 	char	**content;
 	int		width;
 	int		height;
@@ -59,6 +60,6 @@ typedef struct s_resources
 int		keyhook(int key, t_res *res);
 char	**ft_get_map(char *filename);
 void	ft_show_map(t_res *res);
-void	ft_sl_init_res(t_res **res);
+void	ft_sl_init_res(t_res **res, char *argv);
 
 #endif /*FT_SO_LONG_H*/

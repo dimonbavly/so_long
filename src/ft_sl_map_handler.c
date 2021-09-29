@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:53:23 by                   #+#    #+#             */
-/*   Updated: 2021/09/29 15:40:28 by                  ###   ########.fr       */
+/*   Updated: 2021/09/29 22:11:58 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -43,7 +43,7 @@ static char	**ft_list_to_char_arr(t_list *list)
 	i = 0;
 	while (list)
 	{
-		res[i++] = (char *)(list->content);
+		res[i++] = ft_strdup((char *)(list->content));
 		list = list->next;
 	}
 	res[i] = NULL;

@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 20:31:32 by                   #+#    #+#             */
-/*   Updated: 2021/09/29 21:37:04 by                  ###   ########.fr       */
+/*   Updated: 2021/09/29 22:29:40 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -47,7 +47,8 @@ void	ft_init_imgs(t_img **imgs, t_res *res)
 	while (paths[i])
 	{
 		(*imgs)[i] = (t_img){(elems[i]), paths[i], NULL, 32, 32};
-		(*imgs)[i].bin = mlx_xpm_file_to_image(res->mlx, paths[i], &((*imgs)[i].width), &((*imgs)[i].height));
+		(*imgs)[i].bin = mlx_xpm_file_to_image(res->mlx, paths[i], \
+		&((*imgs)[i].width), &((*imgs)[i].height));
 		i++;
 	}
 }
