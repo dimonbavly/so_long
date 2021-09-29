@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sl_image.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By:  <>                                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/29 20:31:32 by                   #+#    #+#             */
+/*   Updated: 2021/09/29 20:35:14 by                  ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "ft_so_long.h"
 void	ft_init_imgs(t_img **imgs, t_res *res);
 void	ft_sl_put_image(t_res *res, int x_w, int y_h);
@@ -27,13 +38,13 @@ void	ft_init_imgs(t_img **imgs, t_res *res)
 	t_elem	*elems;
 	char	**paths;
 
-	paths = (char* []){"map/empty.xpm", "map/wall.xpm", "map/thing.xpm", \
+	paths = (char *[]){"map/empty.xpm", "map/wall.xpm", "map/thing.xpm", \
 	"map/exit.xpm", "map/hero.xpm", NULL};
 	elems = (t_elem []){EMPTY, WALL, THING, EXIT, HERO, END_ENUM_LIST};
 	*imgs = malloc(sizeof (t_img) * (ft_strlen(MAP_CHARS) + 1));
 	while (*paths)
 	{
-		(**imgs) = (t_img){*elems, *paths, \
+		(**imgs) = (t_img){(*elems), *paths, \
 		mlx_xpm_file_to_image(res->mlx, *paths, \
 		&(*imgs)->width, &(*imgs)->height), 32, 32};
 		(*imgs)++;
@@ -46,7 +57,7 @@ void	ft_sl_put_image(t_res *res, int x_w, int y_h)
 {
 	char	*tmp;
 	char	*mapchars;
-	int i;
+	int		i;
 
 	mapchars = NULL;
 	mapchars = ft_strdup(MAP_CHARS);
@@ -54,12 +65,15 @@ void	ft_sl_put_image(t_res *res, int x_w, int y_h)
 	i = tmp - mapchars;
 	if (*tmp == '1' || *tmp == '0')
 	{
-		mlx_put_image_to_window(res->mlx, res->win, res->imgs[i].bin, x_w * TILE, y_h * TILE);
+		mlx_put_image_to_window(res->mlx, res->win, \
+		res->imgs[i].bin, x_w * TILE, y_h * TILE);
 	}
 	else
 	{
-		mlx_put_image_to_window(res->mlx, res->win, res->imgs[EMPTY].bin, x_w * TILE, y_h * TILE);
-		mlx_put_image_to_window(res->mlx, res->win, res->imgs[i].bin, x_w * TILE, y_h * TILE);
+		mlx_put_image_to_window(res->mlx, res->win, \
+		res->imgs[EMPTY].bin, x_w * TILE, y_h * TILE);
+		mlx_put_image_to_window(res->mlx, res->win, \
+		res->imgs[i].bin, x_w * TILE, y_h * TILE);
 	}
 	free(mapchars);
 }

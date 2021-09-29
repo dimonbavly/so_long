@@ -34,7 +34,7 @@ typedef enum e_map_elements
 
 typedef struct s_image
 {
-	t_elem elem;
+	t_elem	elem;
 	char	*path;
 	void	*bin;
 	int		width;
