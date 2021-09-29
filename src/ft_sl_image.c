@@ -38,8 +38,8 @@ void	ft_init_imgs(t_img **imgs, t_res *res)
 	t_elem	*elems;
 	char	**paths;
 
-	paths = (char *[]){"map/empty.xpm", "map/wall.xpm", "map/thing.xpm", \
-	"map/exit.xpm", "map/hero.xpm", NULL};
+	paths = (char *[]){"img/empty.xpm", "img/wall.xpm", "img/thing.xpm", \
+	"img/exit.xpm", "img/hero.xpm", NULL};
 	elems = (t_elem []){EMPTY, WALL, THING, EXIT, HERO, END_ENUM_LIST};
 	*imgs = malloc(sizeof (t_img) * (ft_strlen(MAP_CHARS) + 1));
 	while (*paths)
