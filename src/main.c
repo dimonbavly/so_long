@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:58 by                   #+#    #+#             */
-/*   Updated: 2021/09/28 22:27:13 by                  ###   ########.fr       */
+/*   Updated: 2021/09/29 13:08:46 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -19,8 +19,8 @@ int	main(int argc, char **argv)
 	int		height;
 
 	(void) argc;
-	(void) argv;
 	res = malloc(sizeof (t_res));
+	res->map = ft_get_map(argv[1]);
 	res->mlx = mlx_init();
 	if (!res->mlx)
 		perror("mlx init");

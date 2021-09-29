@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:54 by                   #+#    #+#             */
-/*   Updated: 2021/09/28 21:25:32 by                  ###   ########.fr       */
+/*   Updated: 2021/09/29 12:17:17 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SO_LONG_H
@@ -14,14 +14,19 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <mlx.h>
+# include "get_next_line.h"
+# include "libft.h"
 
 typedef struct s_resources
 {
 	void	*mlx;
 	void	*win;
+	char **map;
 }t_res;
 
-int	keyhook(int key, t_res *res);
+int		keyhook(int key, t_res *res);
+char	**ft_get_map(char *filename);
 
 #endif /*SO_LONG_FT_SO_LONG_H*/
