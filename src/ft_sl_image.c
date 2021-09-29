@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 20:31:32 by                   #+#    #+#             */
-/*   Updated: 2021/09/29 20:35:14 by                  ###   ########.fr       */
+/*   Updated: 2021/09/29 21:37:04 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -19,7 +19,7 @@ void	ft_show_map(t_res *res)
 	int		y_h;
 
 	res->imgs = NULL;
-	ft_init_imgs(&res->imgs, res);
+	ft_init_imgs(&(res->imgs), res);
 	y_h = 0;
 	while (res->map->content[y_h])
 	{
@@ -37,19 +37,18 @@ void	ft_init_imgs(t_img **imgs, t_res *res)
 {
 	t_elem	*elems;
 	char	**paths;
+	int		i;
 
 	paths = (char *[]){"img/empty.xpm", "img/wall.xpm", "img/thing.xpm", \
 	"img/exit.xpm", "img/hero.xpm", NULL};
 	elems = (t_elem []){EMPTY, WALL, THING, EXIT, HERO, END_ENUM_LIST};
 	*imgs = malloc(sizeof (t_img) * (ft_strlen(MAP_CHARS) + 1));
-	while (*paths)
+	i = 0;
+	while (paths[i])
 	{
-		(**imgs) = (t_img){(*elems), *paths, \
-		mlx_xpm_file_to_image(res->mlx, *paths, \
-		&(*imgs)->width, &(*imgs)->height), 32, 32};
-		(*imgs)++;
-		paths++;
-		elems++;
+		(*imgs)[i] = (t_img){(elems[i]), paths[i], NULL, 32, 32};
+		(*imgs)[i].bin = mlx_xpm_file_to_image(res->mlx, paths[i], &((*imgs)[i].width), &((*imgs)[i].height));
+		i++;
 	}
 }
 
