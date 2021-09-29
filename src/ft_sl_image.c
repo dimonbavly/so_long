@@ -49,7 +49,7 @@ void	ft_sl_put_image(t_res *res, int x_w, int y_h)
 	int i;
 
 	mapchars = NULL;
-	ft_memcpy(mapchars, MAP_CHARS, ft_strlen(MAP_CHARS));
+	mapchars = ft_strdup(MAP_CHARS);
 	tmp = ft_strchr(mapchars, res->map->content[y_h][x_w]);
 	i = tmp - mapchars;
 	if (*tmp == '1' || *tmp == '0')
@@ -61,4 +61,5 @@ void	ft_sl_put_image(t_res *res, int x_w, int y_h)
 		mlx_put_image_to_window(res->mlx, res->win, res->imgs[EMPTY].bin, x_w * TILE, y_h * TILE);
 		mlx_put_image_to_window(res->mlx, res->win, res->imgs[i].bin, x_w * TILE, y_h * TILE);
 	}
+	free(mapchars);
 }
