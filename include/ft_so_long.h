@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:54 by                   #+#    #+#             */
-/*   Updated: 2021/09/29 20:05:21 by                  ###   ########.fr       */
+/*   Updated: 2021/09/29 20:07:33 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SO_LONG_H
@@ -21,6 +21,16 @@
 
 # define TILE 32
 # define MAP_CHARS "01CEP"
+
+typedef enum e_map_elements
+{
+	EMPTY,
+	WALL,
+	THING,
+	EXIT,
+	HERO,
+	END_ENUM_LIST
+}t_elem;
 
 typedef struct s_image
 {
