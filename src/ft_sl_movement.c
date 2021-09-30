@@ -6,32 +6,41 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:40:46 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 14:39:55 by                  ###   ########.fr       */
+/*   Updated: 2021/09/30 22:03:06 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
 
 int	ft_sl_check_movement(int key, t_res *res);
+void	ft_sl_check_tile(t_res *res, char c);
 
 void	ft_sl_move(int key, t_res *res)
 {
-	int	mov;
+	int		*keys;
+	int		**vec;
+	int		i;
 
-	mov = ft_sl_check_movement(key, res);
-	if (mov)
+	if (res->gdata->end_game)
+		return ;
+	keys = (int []){13, 0, 1, 2};
+	vec = (int *[]){(int []){-1, 0}, (int []){0, -1}, (int []){1, 0}, (int []){0, 1}};
+	i = 0;
+	while (i < 4)
+	{
+		if (keys[i] == key)
+			break ;
+		i++;
+	}
+	if (res->map->content[res->gdata->y_h + vec[i][0]][res->gdata->x_w + vec[i][1]] != '1')
 	{
 		res->map->content[res->gdata->y_h][res->gdata->x_w] = '0';
-		if (key == 13)
-			res->map->content[--(res->gdata->y_h)][res->gdata->x_w] = 'P';
-		else if (key == 0)
-			res->map->content[res->gdata->y_h][--(res->gdata->x_w)] = 'P';
-		else if (key == 1)
-			res->map->content[++(res->gdata->y_h)][res->gdata->x_w] = 'P';
-		else if (key == 2)
-			res->map->content[res->gdata->y_h][++(res->gdata->x_w)] = 'P';
+		res->gdata->x_w += vec[i][1];
+		res->gdata->y_h += vec[i][0];
+		res->map->content[res->gdata->y_h][res->gdata->x_w] = 'P';
 		(res->gdata->way)++;
 	}
 }
+
 
 int	ft_sl_check_movement(int key, t_res *res)
 {
@@ -50,3 +59,15 @@ int	ft_sl_check_movement(int key, t_res *res)
 	else
 		return (1);
 }
+
+void	ft_sl_check_tile(t_res *res, char c)
+{
+	if (c == 'C')
+		(res->gdata->things)--;
+	else if (c == 'E')
+	{
+		if (res->gdata->things == 0)
+			res->gdata->end_game = 1;
+	}
+}
+
