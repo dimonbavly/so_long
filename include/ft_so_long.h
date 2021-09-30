@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:54 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 11:26:05 by                  ###   ########.fr       */
+/*   Updated: 2021/09/30 12:33:55 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SO_LONG_H
@@ -49,6 +49,7 @@ typedef struct s_map
 	int		height;
 	int		x_w;
 	int		y_h;
+	int		way;
 }t_map;
 
 typedef struct s_resources
