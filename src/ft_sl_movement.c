@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:40:46 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 22:03:06 by                  ###   ########.fr       */
+/*   Updated: 2021/09/30 22:30:54 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -33,6 +33,9 @@ void	ft_sl_move(int key, t_res *res)
 	}
 	if (res->map->content[res->gdata->y_h + vec[i][0]][res->gdata->x_w + vec[i][1]] != '1')
 	{
+		ft_sl_check_tile(res, res->map->content[res->gdata->y_h + vec[i][0]][res->gdata->x_w + vec[i][1]]);
+		if (res->gdata->things == 0)
+			return ;
 		res->map->content[res->gdata->y_h][res->gdata->x_w] = '0';
 		res->gdata->x_w += vec[i][1];
 		res->gdata->y_h += vec[i][0];
@@ -41,7 +44,7 @@ void	ft_sl_move(int key, t_res *res)
 	}
 }
 
-
+//todo rudiment
 int	ft_sl_check_movement(int key, t_res *res)
 {
 	char	c;
@@ -63,7 +66,7 @@ int	ft_sl_check_movement(int key, t_res *res)
 void	ft_sl_check_tile(t_res *res, char c)
 {
 	if (c == 'C')
-		(res->gdata->things)--;
+		(res->gdata->things)--;// todo fix this - goes to -1
 	else if (c == 'E')
 	{
 		if (res->gdata->things == 0)

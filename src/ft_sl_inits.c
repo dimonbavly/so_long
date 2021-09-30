@@ -72,4 +72,5 @@ void	ft_sl_init_gdata(t_res *res)
 		y_h++;
 	}
 	res->gdata->end_game = 0;
+	res->gdata->way = 0;
 }
