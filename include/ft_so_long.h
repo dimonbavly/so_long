@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:54 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 11:24:45 by                  ###   ########.fr       */
+/*   Updated: 2021/09/30 11:26:05 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SO_LONG_H
@@ -65,5 +65,6 @@ void	ft_show_map(t_res *res);
 void	ft_sl_init_res(t_res **res, char *argv);
 void	ft_sl_update_picture(t_res *res);
 void	ft_sl_move(int key, t_res *res);
+int		close_app(void *param);
 
 #endif /*FT_SO_LONG_H*/

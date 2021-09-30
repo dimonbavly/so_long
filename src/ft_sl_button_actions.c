@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 21:26:24 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 11:15:24 by                  ###   ########.fr       */
+/*   Updated: 2021/09/30 12:32:43 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -25,4 +25,10 @@ int	keyhook(int key, t_res *res)
 		ft_sl_update_picture(res);
 	}
 	return (0);
+}
+
+int	close_app(void *param)
+{
+	(void) param;
+	exit (EXIT_SUCCESS);
 }
