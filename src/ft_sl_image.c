@@ -6,31 +6,18 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 20:31:32 by                   #+#    #+#             */
-/*   Updated: 2021/09/29 22:29:40 by                  ###   ########.fr       */
+/*   Updated: 2021/09/30 10:52:58 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
 void	ft_init_imgs(t_img **imgs, t_res *res);
 void	ft_sl_put_image(t_res *res, int x_w, int y_h);
+void	ft_sl_update_picture(t_res *res);
 
 void	ft_show_map(t_res *res)
 {
-	int		x_w;
-	int		y_h;
-
-	res->imgs = NULL;
 	ft_init_imgs(&(res->imgs), res);
-	y_h = 0;
-	while (res->map->content[y_h])
-	{
-		x_w = 0;
-		while (res->map->content[y_h][x_w])
-		{
-			ft_sl_put_image(res, x_w, y_h);
-			x_w++;
-		}
-		y_h++;
-	}
+	ft_sl_update_picture(res);
 }
 
 void	ft_init_imgs(t_img **imgs, t_res *res)
@@ -76,4 +63,22 @@ void	ft_sl_put_image(t_res *res, int x_w, int y_h)
 		res->imgs[i].bin, x_w * TILE, y_h * TILE);
 	}
 	free(mapchars);
+}
+
+void	ft_sl_update_picture(t_res *res)
+{
+	int		x_w;
+	int		y_h;
+
+	y_h = 0;
+	while (res->map->content[y_h])
+	{
+		x_w = 0;
+		while (res->map->content[y_h][x_w])
+		{
+			ft_sl_put_image(res, x_w, y_h);
+			x_w++;
+		}
+		y_h++;
+	}
 }
