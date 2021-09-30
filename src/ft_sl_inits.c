@@ -37,7 +37,14 @@ void	ft_sl_init_map(t_map **map, char *argv)
 	{
 		w = 0;
 		while (tmp[h][w])
+		{
+			if (tmp[h][w] == 'P')
+			{
+				(*map)->x_w = w;
+				(*map)->y_h = h;
+			}
 			w++;
+		}
 		h++;
 	}
 	(*map)->height = h;

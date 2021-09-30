@@ -6,13 +6,15 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 20:31:32 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 10:52:58 by                  ###   ########.fr       */
+/*   Updated: 2021/09/30 10:58:31 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
 void	ft_init_imgs(t_img **imgs, t_res *res);
 void	ft_sl_put_image(t_res *res, int x_w, int y_h);
-void	ft_sl_update_picture(t_res *res);
+/*
+** todo delete this?
+*/
 
 void	ft_show_map(t_res *res)
 {
