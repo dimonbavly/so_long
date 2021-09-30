@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 15:58:54 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 12:33:55 by                  ###   ########.fr       */
+/*   Updated: 2021/09/30 15:43:21 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SO_LONG_H
@@ -41,15 +41,20 @@ typedef struct s_image
 	int		height;
 }t_img;
 
+typedef struct s_game_data
+{
+	int		x_w;
+	int		y_h;
+	int		way;
+	int		things;
+}t_gdata;
+
 typedef struct s_map
 {
 	char	*argv;
 	char	**content;
 	int		width;
 	int		height;
-	int		x_w;
-	int		y_h;
-	int		way;
 }t_map;
 
 typedef struct s_resources
@@ -58,6 +63,7 @@ typedef struct s_resources
 	void	*win;
 	t_map	*map;
 	t_img	*imgs;
+	t_gdata	*gdata;
 }t_res;
 
 int		keyhook(int key, t_res *res);

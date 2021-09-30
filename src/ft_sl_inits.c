@@ -6,18 +6,20 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 22:31:26 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 11:28:36 by                  ###   ########.fr       */
+/*   Updated: 2021/09/30 15:58:55 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
 
 void	ft_sl_init_map(t_map **map, char *argv);
+void	ft_sl_init_gdata(t_res *res);
 
 void	ft_sl_init_res(t_res **res, char *argv)
 {
 	*res = malloc(sizeof(t_res));
 	(*res)->mlx = mlx_init();
 	ft_sl_init_map(&((*res)->map), argv);
+	ft_sl_init_gdata(*res);
 	(*res)->win = mlx_new_window((*res)->mlx, \
 	(*res)->map->width * TILE, (*res)->map->height * TILE, "so_long");
 }
@@ -37,17 +39,37 @@ void	ft_sl_init_map(t_map **map, char *argv)
 	{
 		w = 0;
 		while (tmp[h][w])
-		{
-			if (tmp[h][w] == 'P')
-			{
-				(*map)->x_w = w;
-				(*map)->y_h = h;
-			}
 			w++;
-		}
 		h++;
 	}
 	(*map)->height = h;
 	(*map)->width = w;
-	(*map)->way = 0;
+}
+
+void	ft_sl_init_gdata(t_res *res)
+{
+	int	x_w;
+	int	y_h;
+
+	(void) res;
+	res->gdata = malloc(sizeof(t_gdata));
+	res->gdata->things = 0;
+	y_h = 0;
+	while (res->map->content[y_h])
+	{
+		x_w = 0;
+		while (res->map->content[y_h][x_w])
+		{
+			if (res->map->content[y_h][x_w] == 'C')
+				(res->gdata->things)++;
+			else if (res->map->content[y_h][x_w] == 'P')
+			{
+				res->gdata->x_w = x_w;
+				res->gdata->y_h = y_h;
+			}
+			x_w++;
+		}
+		y_h++;
+	}
+	return ;
 }
