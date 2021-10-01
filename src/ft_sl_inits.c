@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 22:31:26 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 15:59:34 by                  ###   ########.fr       */
+/*   Updated: 2021/10/01 13:26:10 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -44,6 +44,7 @@ void	ft_sl_init_map(t_map **map, char *argv)
 	}
 	(*map)->height = h;
 	(*map)->width = w;
+//	ft_map_check(*map);
 }
 
 void	ft_sl_init_gdata(t_res *res)
