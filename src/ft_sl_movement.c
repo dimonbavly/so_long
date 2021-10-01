@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 11:40:46 by                   #+#    #+#             */
-/*   Updated: 2021/10/01 09:05:23 by                  ###   ########.fr       */
+/*   Updated: 2021/10/01 09:35:12 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -23,7 +23,8 @@ void	ft_sl_move(int key, t_res *res)
 		return ;
 	vec = ft_sl_move_pre(key);
 	if (res->map->content[res->gdata->y_h + vec[0]][res->gdata->x_w + vec[1]] \
-	!= '1')
+	!= '1' && (res->map->content[res->gdata->y_h + vec[0]] \
+	[res->gdata->x_w + vec[1]] != 'E' && res->gdata->things > 0 ))
 	{
 		ret = ft_sl_check_tile(res, res->map->content \
 		[res->gdata->y_h + vec[0]][res->gdata->x_w + vec[1]]);
