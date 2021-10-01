@@ -72,9 +72,7 @@ char	**ft_get_map(char *filename);
 void	ft_show_map(t_res *res);
 void	ft_sl_init_res(t_res **res, char *argv);
 void	ft_sl_update_picture(t_res *res);
-//void	ft_sl_move(int key, t_res *res);
 int		close_app(void *param);
 void	ft_sl_move(int key, t_res *res);
-
 
 #endif /*FT_SO_LONG_H*/

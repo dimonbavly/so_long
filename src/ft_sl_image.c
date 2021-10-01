@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 20:31:32 by                   #+#    #+#             */
-/*   Updated: 2021/09/30 22:28:24 by                  ###   ########.fr       */
+/*   Updated: 2021/10/01 08:55:34 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -81,7 +81,6 @@ void	ft_sl_update_picture(t_res *res)
 		y_h++;
 	}
 	printf("%d\n", res->gdata->way);
-
-	mlx_string_put(res->mlx, res->win, 40, 40, 0x00000000, ft_itoa(res->gdata->things));
-	mlx_string_put(res->mlx, res->win, TILE / 2, TILE / 2, 0x00000000, ft_itoa(res->gdata->way));
+	mlx_string_put(res->mlx, res->win, TILE / 2, TILE / 2, \
+	0x00000000, ft_itoa(res->gdata->way));
 }
