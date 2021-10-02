@@ -36,7 +36,7 @@ $(LIBFT):
 	$(MAKE) --directory=Libft mylibft
 
 clean:
-	rm -rf obj/*
+	rm -rf obj
 
 fclean:	clean
 	make --directory=Libft fclean

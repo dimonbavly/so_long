@@ -17,9 +17,9 @@ void	ft_sl_init_gdata(t_res *res);
 void	ft_sl_init_res(t_res **res, char *argv)
 {
 	*res = malloc(sizeof(t_res));
-	(*res)->mlx = mlx_init();
 	ft_sl_init_map(&((*res)->map), argv);
 	ft_sl_init_gdata(*res);
+	(*res)->mlx = mlx_init();
 	(*res)->win = mlx_new_window((*res)->mlx, \
 	(*res)->map->width * TILE, (*res)->map->height * TILE, "so_long");
 }
