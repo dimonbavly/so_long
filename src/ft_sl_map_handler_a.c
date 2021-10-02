@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 11:07:30 by                   #+#    #+#             */
-/*   Updated: 2021/10/02 11:08:52 by                  ###   ########.fr       */
+/*   Updated: 2021/10/02 13:45:00 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -16,7 +16,11 @@ char	**ft_list_to_char_arr(t_list *list)
 {
 	char	**res;
 	int		i;
+	t_list	*tmp;
 
+	tmp = ft_lstlast(list);
+	if (((char *)tmp->content)[0] == '\0')
+		tmp->content = NULL;
 	res = malloc(sizeof(char *) * ft_lstsize(list) + 1);
 	i = 0;
 	while (list)
@@ -68,7 +72,7 @@ void	ft_check_map_dimensions_and_elements(char **map)
 			maparr[ft_strchr(mapchars, map[y][x]) - mapchars]++;
 		y++;
 	}
-	if (y < 3 || x < 3)
+	if (y < 4 || x < 4)
 	{
 		printf("%d, %d\n", y, x);
 		error_n_xit("Wrong map dimensions", EXIT_SUCCESS);
