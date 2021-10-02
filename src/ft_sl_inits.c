@@ -44,7 +44,6 @@ void	ft_sl_init_map(t_map **map, char *argv)
 	}
 	(*map)->height = h;
 	(*map)->width = w;
-//	ft_map_check(*map);
 }
 
 void	ft_sl_init_gdata(t_res *res)
