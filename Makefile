@@ -46,5 +46,5 @@ debug:	DEBUGFLAGS = -g3 -v
 debug:	$(NAME)
 
 norm:
-	norminette include/* src/*
+	norminette include/* src/* Libft/*.c Libft/*.h gnl/*.c gnl/*.h
 
