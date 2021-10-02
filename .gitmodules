@@ -1,9 +1,1 @@
-[submodule "minilibx-linux"]
-	path = minilibx-linux
-	url = git@github.com:42Paris/minilibx-linux.git
-[submodule "Libft"]
-	path = Libft
-	url = git@github.com:dimonbavly/Libft.git
-[submodule "gnl"]
-	path = gnl
-	url = git@github.com:dimonbavly/gnl.git
+
