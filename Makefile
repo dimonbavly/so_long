@@ -24,12 +24,14 @@ all:	$(NAME)
 $(NAME):	$(OBJS)	$(LIBFT)
 	$(CC) $(OBJS) $(LD_PATHS) $(LDFLAGS) -o $(NAME)
 
-$(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
+$(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(DEBUGFLAGS) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJ_PATH)/%.o:	$(GNL_PATH)/%.c
+$(OBJ_PATH)/%.o:	$(GNL_PATH)/%.c	| $(OBJ_PATH)
 	$(CC) $(DEBUGFLAGS) $(CFLAGS) $(INCLUDES) -D BUFFER_SIZE=32 -c $< -o $@
 
+$(OBJ_PATH):
+	mkdir -p $@
 $(LIBFT):
 	$(MAKE) --directory=Libft mylibft
 
