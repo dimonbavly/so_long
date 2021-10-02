@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 11:07:30 by                   #+#    #+#             */
-/*   Updated: 2021/10/02 13:45:00 by                  ###   ########.fr       */
+/*   Updated: 2021/10/02 13:45:45 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -69,7 +69,11 @@ void	ft_check_map_dimensions_and_elements(char **map)
 	{
 		x = -1;
 		while (map[y][++x])
+		{
+			if (ft_strchr(mapchars, map[y][x]) == NULL)
+				error_n_xit("Map error", EXIT_SUCCESS);
 			maparr[ft_strchr(mapchars, map[y][x]) - mapchars]++;
+		}
 		y++;
 	}
 	if (y < 4 || x < 4)
