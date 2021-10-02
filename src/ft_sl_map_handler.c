@@ -22,8 +22,8 @@ char	**ft_get_map(char *filename)
 
 	list = NULL;
 	str = NULL;
-	fd = open(filename, O_RDONLY);
 	ft_check_map_name(filename);
+	fd = open(filename, O_RDONLY);
 	while (get_next_line(fd, &str) >= 0)
 	{
 		ft_lstadd_back(&list, ft_lstnew(str));

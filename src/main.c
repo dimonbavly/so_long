@@ -16,6 +16,8 @@ int	main(int argc, char **argv)
 	t_res	*res;
 
 	(void) argc;
+	if (argc != 2)
+		error_n_xit("Number arguments error", EXIT_SUCCESS);
 	ft_sl_init_res(&res, argv[1]);
 	ft_show_map(res);
 	mlx_key_hook (res->win, keyhook, res);
