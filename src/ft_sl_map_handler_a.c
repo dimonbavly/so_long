@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 11:07:30 by                   #+#    #+#             */
-/*   Updated: 2021/10/02 13:45:45 by                  ###   ########.fr       */
+/*   Updated: 2021/10/02 14:32:40 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -78,7 +78,6 @@ void	ft_check_map_dimensions_and_elements(char **map)
 	}
 	if (y < 4 || x < 4)
 	{
-		printf("%d, %d\n", y, x);
 		error_n_xit("Wrong map dimensions", EXIT_SUCCESS);
 	}
 	ft_check_map_symbols(maparr);
