@@ -10,7 +10,7 @@ char	**ft_list_to_char_arr(t_list *list)
 	i = 0;
 	while (list)
 	{
-		res[i++] = ft_strdup((char *)(list->content));
+		res[i++] = (char *)(list->content);
 		list = list->next;
 	}
 	res[i] = NULL;
@@ -34,12 +34,11 @@ void	ft_check_map_name(char *filename)
 
 void	ft_check_map_symbols(int *arr)
 {
-	printf("--->>> %d %d %d %d %d\n", arr[0], arr[1], arr[2], arr[3], arr[4]);
 	if (arr[0] < 1 || arr[1] < 12 || arr[2] < 1 || arr[3] < 1 || arr[4] != 1)
 		error_n_xit("Wrong number of characters on the map", EXIT_SUCCESS);
 }
 
-void	ft_check_map_dimensions_and_elements_and_borders(char **map)
+void	ft_check_map_dimensions_and_elements(char **map)
 {
 	int		x;
 	int		y;
@@ -57,13 +56,16 @@ void	ft_check_map_dimensions_and_elements_and_borders(char **map)
 		y++;
 	}
 	if (y < 3 || x < 3)
+	{
+		printf("%d, %d\n", y, x);
 		error_n_xit("Wrong map dimensions", EXIT_SUCCESS);
+	}
 	ft_check_map_symbols(maparr);
-	free(maparr);
 	free(mapchars);
 }
-
-void	ft_check_borders_and_len(char **map)
+// todo
+/*
+void	ft_check_borders_and_len_old(char **map)
 {
 	size_t	*tmp;
 	char	***strs;
@@ -72,11 +74,11 @@ void	ft_check_borders_and_len(char **map)
 	tmp = (size_t []){ft_strlen(*map), 0};
 	while (++(*strs[0]))
 	{
+		printf("%lu\n", ft_strlen(*map));
 		if (ft_strlen(*map) != tmp[0])
 			error_n_xit("Different strings length", EXIT_SUCCESS);
 	}
-	tmp = (size_t []){0, 0};
-	while (**strs[1] && *strs[2])
+	while (*strs[1] && *strs[2])
 	{
 		if (**strs[1] != '1' || **strs[2] != '1')
 			error_n_xit("Borders are not closed", EXIT_SUCCESS);
@@ -85,5 +87,33 @@ void	ft_check_borders_and_len(char **map)
 	{
 		if (**strs[3] != '1' || *strs[3][tmp[0]] != '1')
 			error_n_xit("Borders are not closed", EXIT_SUCCESS);
+	}
+}
+*/
+
+void	ft_check_borders_and_len(char **map)
+{
+	size_t		*i;
+	size_t		*len;
+
+	i = (size_t []){0, 0};
+	len = (size_t []){0, ft_strlen(map[0])};
+	while (map[i[1]])
+	{
+		if (ft_strlen(map[i[1]]) != len[1])
+			error_n_xit("Different strings length", EXIT_SUCCESS);
+		i[1]++;
+	}
+	while (map[i[0]])
+	{
+		len[0] = 0;
+		while (map[i[0]][len[0]])
+		{
+			if (((i[0] == 0 || i[0] == i[1] - 1) && map[i[0]][len[0]] != '1') || \
+			((len[0] == 0 || len[0] == len[1] - 1) && map[i[0]][len[0]] != '1'))
+				error_n_xit("Borders are not closed", EXIT_SUCCESS);
+			len[0]++;
+		}
+		i[0]++;
 	}
 }
