@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 20:31:32 by                   #+#    #+#             */
-/*   Updated: 2021/10/01 11:55:56 by                  ###   ########.fr       */
+/*   Updated: 2021/10/07 09:53:47 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -34,7 +34,7 @@ void	ft_init_imgs(t_img **imgs, t_res *res)
 	i = 0;
 	while (elems[i] != END_ENUM_LIST)
 		i++;
-	*imgs = malloc(sizeof (t_img) * (i + 1));
+	*imgs = check_null_ptr(malloc(sizeof (t_img) * (i + 1)));
 	i = 0;
 	while (paths[i])
 	{

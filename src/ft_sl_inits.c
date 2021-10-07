@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 22:31:26 by                   #+#    #+#             */
-/*   Updated: 2021/10/01 13:26:10 by                  ###   ########.fr       */
+/*   Updated: 2021/10/07 09:56:04 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -16,7 +16,7 @@ void	ft_sl_init_gdata(t_res *res);
 
 void	ft_sl_init_res(t_res **res, char *argv)
 {
-	*res = malloc(sizeof(t_res));
+	*res = check_null_ptr(malloc(sizeof(t_res)));
 	ft_sl_init_map(&((*res)->map), argv);
 	ft_sl_init_gdata(*res);
 	(*res)->mlx = mlx_init();
@@ -30,7 +30,7 @@ void	ft_sl_init_map(t_map **map, char *argv)
 	int		w;
 	char	**tmp;
 
-	*map = malloc(sizeof (t_map));
+	*map = check_null_ptr(malloc(sizeof (t_map)));
 	(*map)->argv = argv;
 	(*map)->content = ft_get_map(argv);
 	tmp = (*map)->content;
@@ -52,7 +52,7 @@ void	ft_sl_init_gdata(t_res *res)
 	int	y_h;
 
 	(void) res;
-	res->gdata = malloc(sizeof(t_gdata));
+	res->gdata = check_null_ptr(malloc(sizeof(t_gdata)));
 	res->gdata->things = 0;
 	y_h = 0;
 	while (res->map->content[y_h])

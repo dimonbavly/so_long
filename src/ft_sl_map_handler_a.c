@@ -6,7 +6,7 @@
 /*   By:  <>                                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 11:07:30 by                   #+#    #+#             */
-/*   Updated: 2021/10/02 15:43:35 by                  ###   ########.fr       */
+/*   Updated: 2021/10/07 09:55:10 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_so_long.h"
@@ -21,7 +21,7 @@ char	**ft_list_to_char_arr(t_list *list)
 	tmp = ft_lstlast(list);
 	if (((char *)tmp->content)[0] == '\0')
 		tmp->content = NULL;
-	res = malloc(sizeof(char *) * ft_lstsize(list) + 1);
+	res = check_null_ptr(malloc(sizeof(char *) * ft_lstsize(list) + 1));
 	i = 0;
 	while (list)
 	{
