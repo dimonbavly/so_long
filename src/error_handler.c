@@ -23,4 +23,5 @@ void	*check_null_ptr(void *ptr)
 		error_n_xit(strerror(errno), EXIT_FAILURE);
 	else
 		return (ptr);
+	return (NULL);
 }
